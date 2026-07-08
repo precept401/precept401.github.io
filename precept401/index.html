@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Precept401 — цифровая среда</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #4c768c, #061113);
+            color: #5ab99b;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        /* КОНТЕЙНЕР — ВСЯ ВЫСОТА ЭКРАНА */
+        .screen {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* ПЕЧАТЬ (ЦЕНТР) */
+        .seal {
+            width: 340px;
+            height: 340px;
+            background-color: #000000;
+            border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            box-shadow: 0 0 20px rgba(90, 185, 155, 0.3);
+            border: 2px solid #5ab99b;
+        }
+
+        .seal span {
+            font-size: 48px;
+            font-weight: bold;
+            color: #5ab99b;
+        }
+
+        /* стиль для картинки внутри печати */
+        .seal img {
+            width: 100%;
+            height: 100%:
+            object-fit: contain;
+            display: block;
+            border: none;
+            outline: none;
+            pointer-events: none;
+        }
+
+        /* МЕНЮ-ПАНЕЛЬ (ТЕКСТОВЫЕ КНОПКИ) */
+        .menu-panel {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* СЕНСОРНАЯ КНОПКА (ТЕКСТ В РАМКЕ) */
+        .sensor {
+            display: inline-block;
+            text-decoration: none;
+            color: #5ab99b;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-color: #0d1b1e;
+            border: 1px solid #5ab99b;
+            border-radius: 20px;
+            padding: 10px 20px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .sensor:hover {
+            background-color: #5ab99b;
+            color: #061113;
+            transform: scale(1.05);
+        }
+
+        /* СКРЫТЫЙ ТЕКСТ (ПРОКРУТКА) */
+        .hidden-text {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            background-color: rgba(13, 27, 30, 0.8);
+        }
+
+        .hidden-text .card {
+            max-width: 600px;
+            background-color: #0d1b1e;
+            padding: 30px;
+            border-radius: 30px;
+            border: 1px solid #5ab99b;
+        }
+
+        /* АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ */
+max-width: 600px {
+    .lab-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .lab-button {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+    
+    .dropdown-content {
+        position: static;
+        margin-top: 5px;
+    }
+    
+    .title h1 {
+        font-size: 32px;
+    }
+    
+    .lab-dot-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+        /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
+        .sound-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #0d1b1e;
+            border: 2px solid #5ab99b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s ease;
+        }
+
+        .sound-btn:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
+
+        @keyframes noise {
+               0% { transform: translate(0, 0); opacity: 0.3; }
+              10% { transform: translate(-1%, -1%); opacity: 0.4; }
+              20% { transform: translate(1%, 1%); opacity: 0.3; }
+              30% { transform: translate(-1%, 1%); opacity: 0.5; }
+              40% { transform: translate(1%, -1%); opacity: 0.3; }
+              50% { transform: translate(0, 0); opacity: 0.4; }
+              60% { transform: translate(-1%, -1%); opacity: 0.3; }
+              70% { transform: translate(1%, 1%); opacity: 0.5; }
+              80% { transform: translate(-1%, 1%); opacity: 0.3; }
+              90% { transform: translate(1%, -1%); opacity: 0.4; }
+             100% { transform: translate(0, 0); opacity: 0.3; }
+        }
+
+        body::after {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9998;
+                background: repeating-linear-gradient(0deg, rgba(0,255,0,0.05) 0px, rgba(0,255,0,0.05) 2px, transparent 4px, transparent 10px);
+                animation: noise 1.8s infinite;
+       }
+
+       @keyframes glitch {
+                0% { transform: translate(0); }
+               95% { transform: translate(0); }
+               96% { transform: translate(-2px, 2px); }
+               97% { transform: translate(2px, -2px); }
+               98% { transform: translate(0, 0); }
+               99% { transform: translate(0, 0); }
+              100% { transform: translate(0); }
+      }
+
+      body {
+               animation: glitch 12s infinite;
+               overflow-x: hidden;
+      }
+
+    </style>
+</head>
+<body>
+
+    <!-- ЭКРАН С ПЕЧАТЬЮ И МЕНЮ -->
+    <div class="screen">
+        <div class="seal">
+            <img src="/precept401/images/seal.png" alt="Печать precept401">
+        </div>
+
+    <!-- КНОПКА ЗВУКА (СПРАВА) -->
+    <div id="soundControl" class="sound-btn">🔊</div>
+
+        <!-- МЕНЮ (ТЕКСТОВЫЕ КНОПКИ) -->
+        <div class="menu-panel">
+            <a href="/precept401/lab_menu/" class="sensor">[Lab]</a>
+            <a href="/precept401/liquid_emptiness_menu/" class="sensor">[Liquid emptiness]</a>
+            <a href="/precept401/depository_menu/" class="sensor">[Depository]</a>
+            <a href="/precept401/hub/" class="sensor">[Hub]</a>
+        </div>
+
+        <p style="font-size: 12px; opacity: 0.6;">↓ скролл вниз ↓</p>
+    </div>
+
+    <!-- СКРЫТЫЙ ТЕКСТ (ПОЯВЛЯЕТСЯ ПРИ ПРОКРУТКЕ) -->
+    <div class="hidden-text">
+        <div class="card">
+            <h2>В этом пространстве</h2>
+            <p>обозревают реальность как целое, обмениваются ценностью и открывают новые взаимовыгодные пути.</p>
+            <p>Здесь нету места играм по чужим сценариям - здесь строят экосистему.</p>
+        </div>
+    </div>
+
+    <script>
+// КНОПКА ЗВУКА
+const soundBtn = document.getElementById('soundControl');
+
+// ПОЛУЧАЕМ СОСТОЯНИЕ ИЗ ХРАНИЛИЩА (ЕСЛИ ЕСТЬ)
+let isSoundOn = localStorage.getItem('isSoundOn') !== 'false';
+
+// СОЗДАЁМ АУДИО (ОДИН РАЗ)
+const audio = new Audio('/precept401/sounds/atmo.mp3');
+audio.loop = true;
+
+// УСТАНАВЛИВАЕМ ГРОМКОСТЬ (ПО ЖЕЛАНИЮ)
+audio.volume = 0.1;
+
+// ФУНКЦИЯ ОБНОВЛЕНИЯ ИКОНКИ И СОСТОЯНИЯ
+function updateSoundButton() {
+    if (isSoundOn) {
+        soundBtn.textContent = '🔊';
+        audio.play().catch(e => console.log('Автовоспроизведение заблокировано:', e));
+    } else {
+        soundBtn.textContent = '🔇';
+        audio.pause();
+    }
+}
+
+// ПРОВЕРЯЕМ, НУЖНО ЛИ ВОСПРОИЗВОДИТЬ ПРИ ЗАГРУЗКЕ
+updateSoundButton();
+
+// ОБРАБОТЧИК КЛИКА
+soundBtn.addEventListener('click', () => {
+    isSoundOn = !isSoundOn;
+    localStorage.setItem('isSoundOn', isSoundOn);
+    updateSoundButton();
+        });
+    </script>
+
+</body>
+</html>

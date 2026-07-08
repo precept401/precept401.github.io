@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>BANKNOTE OF LIQUID EMPTINESS 180226504</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #4c768c, #061113);
+            color: #5ab99b;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            padding: 60px;
+        }
+
+        /* ЛЕВАЯ ЧАСТЬ — БАНКНОТА */
+        .banknote-area {
+            flex: 1;
+            max-width: 450px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .banknote-img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(90, 185, 155, 0.2);
+        }
+
+        /* ПРАВАЯ ЧАСТЬ — ОПИСАНИЕ + КНОПКА */
+        .description-area {
+            flex: 1;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .description-img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        .getgems-btn {
+            display: inline-block;
+            background-color: #0d1b1e;
+            color: #5ab99b;
+            border: 1px solid #5ab99b;
+            border-radius: 30px;
+            padding: 12px 24px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.2s ease;
+        }
+
+        .getgems-btn:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
+
+        /* МЕНЮ (КРУЖОК С ТОЧКАМИ) */
+        .dot-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .dot-button {
+            width: 50px;
+            height: 50px;
+            background-color: #0d1b1e;
+            border: 2px solid #5ab99b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #5ab99b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dot-button:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
+
+        .dot-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-items {
+            position: absolute;
+            top: 0;
+            left: 60px;
+            background-color: rgba(13, 27, 30, 0.95);
+            border: 1px solid #5ab99b;
+            border-radius: 30px;
+            padding: 8px 20px;
+            white-space: nowrap;
+            backdrop-filter: blur(5px);
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s linear 0.5s, opacity 0.3s linear;
+        }
+
+        .dot-menu:hover .menu-items {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s linear 0s, opacity 0.3s linear;
+        }
+
+        .menu-items a {
+            color: #5ab99b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border-radius: 20px;
+        }
+
+        .menu-items a:hover {
+            background-color: #5ab99b;
+            color: #000000;
+        }
+
+        /* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+max-width: 600px {
+    .lab-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .lab-button {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+    
+    .dropdown-content {
+        position: static;
+        margin-top: 5px;
+    }
+    
+    .title h1 {
+        font-size: 32px;
+    }
+    
+    .lab-dot-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+        /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
+        .sound-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #0d1b1e;
+            border: 2px solid #5ab99b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s ease;
+        }
+
+        .sound-btn:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
+
+        max-width: 768px {
+            .container {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .banknote-area, .description-area {
+                max-width: 100%;
+            }
+        }
+
+        @keyframes noise {
+               0% { transform: translate(0, 0); opacity: 0.3; }
+              10% { transform: translate(-1%, -1%); opacity: 0.4; }
+              20% { transform: translate(1%, 1%); opacity: 0.3; }
+              30% { transform: translate(-1%, 1%); opacity: 0.5; }
+              40% { transform: translate(1%, -1%); opacity: 0.3; }
+              50% { transform: translate(0, 0); opacity: 0.4; }
+              60% { transform: translate(-1%, -1%); opacity: 0.3; }
+              70% { transform: translate(1%, 1%); opacity: 0.5; }
+              80% { transform: translate(-1%, 1%); opacity: 0.3; }
+              90% { transform: translate(1%, -1%); opacity: 0.4; }
+             100% { transform: translate(0, 0); opacity: 0.3; }
+        }
+
+        body::after {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9998;
+                background: repeating-linear-gradient(0deg, rgba(0,255,0,0.05) 0px, rgba(0,255,0,0.05) 2px, transparent 4px, transparent 10px);
+                animation: noise 1.8s infinite;
+       }
+
+       @keyframes glitch {
+                0% { transform: translate(0); }
+               95% { transform: translate(0); }
+               96% { transform: translate(-2px, 2px); }
+               97% { transform: translate(2px, -2px); }
+               98% { transform: translate(0, 0); }
+               99% { transform: translate(0, 0); }
+              100% { transform: translate(0); }
+      }
+
+      body {
+               overflow-x: hidden;
+      }
+
+    </style>
+</head>
+<body>
+
+    <div class="dot-nav">
+        <div class="dot-menu">
+            <div class="dot-button">•••</div>
+            <div class="menu-items">
+                <a href="/precept401/">[HOME]</a>
+                <a href="/precept401/liquid_emptiness_menu/gallery_banknotes/">[BANKNOTES]</a>
+                <a href="/precept401/lab_menu/">[LAB]</a>
+                <a href="/precept401/liquid_emptiness_menu/">[LIQUID EMPTINESS]</a>
+                <a href="/precept401/depository_menu/">[DEPOSITORY]</a>
+                <a href="/precept401/hub/">[HUB]</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- КНОПКА ЗВУКА (СПРАВА) -->
+    <div id="soundControl" class="sound-btn">🔊</div>
+
+    <div class="container">
+        <!-- ЛЕВАЯ ЧАСТЬ: БАНКНОТА (PNG) -->
+        <div class="banknote-area">
+            <img id="banknote-img" class="banknote-img" src="png_gallery_banknotes/b5-4f.png" alt="Банкнота 12">
+        </div>
+
+        <!-- ПРАВАЯ ЧАСТЬ: ОПИСАНИЕ (PNG) + КНОПКА -->
+        <div class="description-area">
+            <img class="description-img" src="png_gallery_banknotes/b5-4info.png" alt="Описание банкноты 12">
+            <a href="https://getgems.io/collection/EQAcDVXczkEzztNwePZH46Z0TC42t-5eT3DqAvDrBYX1P9lC/EQCB4FKSvpnai4CVanLcm-o4nWS9-qFEpxhMwlI9kvHvshzV" class="getgems-btn" target="_blank">[GetGems]</a>
+        </div>
+    </div>
+
+    <script>
+
+        // ЦИКЛИЧЕСКОЕ ПЕРЕКЛЮЧЕНИЕ ИЗОБРАЖЕНИЙ БАНКНОТЫ
+        const img = document.getElementById('banknote-img');
+        const images = [
+            'png_gallery_banknotes/b5-4f.png',   // лицевая сторона
+            'png_gallery_banknotes/b5-4b.png',    // оборотная сторона
+            'png_gallery_banknotes/b5-4.gif'          // гифка
+        ];
+        let currentIndex = 0;
+
+        img.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            img.src = images[currentIndex];
+        });
+
+       // КНОПКА ЗВУКА
+       const soundBtn = document.getElementById('soundControl');
+
+       // ПОЛУЧАЕМ СОСТОЯНИЕ ИЗ ХРАНИЛИЩА (ЕСЛИ ЕСТЬ)
+       let isSoundOn = localStorage.getItem('isSoundOn') !== 'false';
+
+       // СОЗДАЁМ АУДИО (ОДИН РАЗ)
+       const audio = new Audio('/precept401/sounds/atmo.mp3');
+       audio.loop = true;
+
+       // УСТАНАВЛИВАЕМ ГРОМКОСТЬ (ПО ЖЕЛАНИЮ)
+       audio.volume = 0.1;
+
+       // ФУНКЦИЯ ОБНОВЛЕНИЯ ИКОНКИ И СОСТОЯНИЯ
+       function updateSoundButton() {
+       if (isSoundOn) {
+        soundBtn.textContent = '🔊';
+        audio.play().catch(e => console.log('Автовоспроизведение заблокировано:', e));
+       } else {
+        soundBtn.textContent = '🔇';
+        audio.pause();
+       }
+    }
+
+       // ПРОВЕРЯЕМ, НУЖНО ЛИ ВОСПРОИЗВОДИТЬ ПРИ ЗАГРУЗКЕ
+       updateSoundButton();
+
+       // ОБРАБОТЧИК КЛИКА
+       soundBtn.addEventListener('click', () => {
+          isSoundOn = !isSoundOn;
+          localStorage.setItem('isSoundOn', isSoundOn);
+          updateSoundButton();
+        });
+    </script>
+
+</body>
+</html>
