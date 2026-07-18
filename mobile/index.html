@@ -23,7 +23,6 @@
             padding: 20px 20px 40px;
         }
 
-        /* Контейнер — вся высота */
         .screen {
             width: 100%;
             max-width: 480px;
@@ -35,7 +34,7 @@
             min-height: 80vh;
         }
 
-        /* Печать — почти половина экрана */
+        /* ПЕЧАТЬ — крупная, по центру */
         .seal {
             width: 80%;
             max-width: 340px;
@@ -58,7 +57,7 @@
             display: block;
         }
 
-        /* Меню в столбик на всю ширину */
+        /* МЕНЮ — в столбик, кнопки на всю ширину */
         .menu-panel {
             display: flex;
             flex-direction: column;
@@ -98,7 +97,6 @@
             margin-top: 10px;
         }
 
-        /* Скрытый текст */
         .hidden-text {
             width: 100%;
             max-width: 480px;
@@ -131,7 +129,7 @@
             margin-top: 12px;
         }
 
-        /* Кнопка звука — сверху справа (ты сам увеличишь размер) */
+        /* КНОПКА ЗВУКА (сверху справа) */
         .sound-btn {
             position: fixed;
             top: 16px;
@@ -156,7 +154,7 @@
             transform: scale(0.92);
         }
 
-        /* Шум */
+        /* ШУМ */
         @keyframes noise {
             0% { transform: translate(0, 0); opacity: 0.3; }
             10% { transform: translate(-1%, -1%); opacity: 0.4; }
@@ -203,15 +201,15 @@
 <body>
 
     <div class="screen">
-        <!-- Печать -->
+        <!-- ПЕЧАТЬ -->
         <div class="seal">
             <img src="images/seal.png" alt="Печать precept401">
         </div>
 
-        <!-- Кнопка звука -->
+        <!-- КНОПКА ЗВУКА -->
         <div id="soundControl" class="sound-btn">🔊</div>
 
-        <!-- Меню -->
+        <!-- МЕНЮ -->
         <div class="menu-panel">
             <a href="lab_menu/" class="sensor">[Lab]</a>
             <a href="liquid_emptiness_menu/" class="sensor">[Liquid emptiness]</a>
@@ -222,7 +220,6 @@
         <p class="scroll-hint">↓ скролл вниз ↓</p>
     </div>
 
-    <!-- Скрытый текст -->
     <div class="hidden-text">
         <div class="card">
             <h2>В этом пространстве</h2>
