@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>BANKNOTES OF LIQUID EMPTINESS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(to right, #4c768c, #061113);
+            color: #5ab99b;
+            font-family: 'Courier New', monospace;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .title {
+            margin-bottom: 50px;
+        }
+
+        .title h1 {
+            font-size: 48px;
+            color: #5ab99b;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .title p {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            justify-items: center;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .banknote-card {
+            background-color: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            text-align: center;
+            transition: transform 0.2s ease;
+            max-width: 450px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .banknote-card:hover {
+            transform: scale(1.2);
+        }
+
+        .banknote-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            cursor: pointer;
+        }
+
+        .banknote-card a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .dot-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        .dot-button {
+            width: 50px;
+            height: 50px;
+            background-color: #0d1b1e;
+            border: 2px solid #5ab99b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #5ab99b;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .dot-button:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
+
+        .dot-menu {
+            position: relative;
+            display: inline-block;
+        }
+
+        .menu-items {
+            position: absolute;
+            top: 0;
+            left: 60px;
+            background-color: rgba(13, 27, 30, 0.95);
+            border: 1px solid #5ab99b;
+            border-radius: 30px;
+            padding: 8px 20px;
+            white-space: nowrap;
+            backdrop-filter: blur(5px);
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s linear 0.5s, opacity 0.3s linear;
+        }
+
+        .dot-menu:hover .menu-items {
+            visibility: visible;
+            opacity: 1;
+            transition: visibility 0s linear 0s, opacity 0.3s linear;
+        }
+
+        .menu-items a {
+            color: #5ab99b;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            display: inline-block;
+            transition: all 0.2s ease;
+            border-radius: 20px;
+        }
+
+        .menu-items a:hover {
+            background-color: #5ab99b;
+            color: #000000;
+        }
+
+        max-width: 600px {
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            .title h1 {
+                font-size: 32px;
+            }
+        }
+
+        /* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
+        @media (max-width: 600px) {
+        .lab-menu {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .lab-button {
+        padding: 12px 24px;
+        font-size: 18px;
+    }
+    
+    .dropdown-content {
+        position: static;
+        margin-top: 5px;
+    }
+    
+    .title h1 {
+        font-size: 32px;
+    }
+    
+    .lab-dot-button {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+        /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
+        .sound-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: #0d1b1e;
+            border: 2px solid #5ab99b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s ease;
+        }
+
+        .sound-btn:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
+
+        @keyframes noise {
+               0% { transform: translate(0, 0); opacity: 0.3; }
+              10% { transform: translate(-1%, -1%); opacity: 0.4; }
+              20% { transform: translate(1%, 1%); opacity: 0.3; }
+              30% { transform: translate(-1%, 1%); opacity: 0.5; }
+              40% { transform: translate(1%, -1%); opacity: 0.3; }
+              50% { transform: translate(0, 0); opacity: 0.4; }
+              60% { transform: translate(-1%, -1%); opacity: 0.3; }
+              70% { transform: translate(1%, 1%); opacity: 0.5; }
+              80% { transform: translate(-1%, 1%); opacity: 0.3; }
+              90% { transform: translate(1%, -1%); opacity: 0.4; }
+             100% { transform: translate(0, 0); opacity: 0.3; }
+        }
+
+        body::after {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 9998;
+                background: repeating-linear-gradient(0deg, rgba(0,255,0,0.05) 0px, rgba(0,255,0,0.05) 2px, transparent 4px, transparent 10px);
+                animation: noise 1.8s infinite;
+       }
+
+       @keyframes glitch {
+                0% { transform: translate(0); }
+               95% { transform: translate(0); }
+               96% { transform: translate(-2px, 2px); }
+               97% { transform: translate(2px, -2px); }
+               98% { transform: translate(0, 0); }
+               99% { transform: translate(0, 0); }
+              100% { transform: translate(0); }
+      }
+
+      body {
+               overflow-x: hidden;
+      }
+
+    </style>
+</head>
+<body>
+
+    <div class="dot-nav">
+        <div class="dot-menu">
+            <div class="dot-button">•••</div>
+            <div class="menu-items">
+                <a href="https://precept401.github.io">[HOME]</a>
+                <a href="https://precept401.github.io/lab_menu/">[LAB]</a>
+                <a href="https://precept401.github.io/depository_menu/">[DEPOSITORY]</a>
+                <a href="https://precept401.github.io/liquid_emptiness_menu/">[LIQUID EMPTINESS]</a>
+                <a href="https://precept401.github.io/hub/">[HUB]</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- КНОПКА ЗВУКА (СПРАВА) -->
+    <div id="soundControl" class="sound-btn">🔊</div>
+
+    <div class="container">
+        <div class="title">
+            <h1>[BANKNOTES OF LIQUID EMPTINESS]</h1>
+            <p></p>
+        </div>
+
+        <div class="gallery">
+            <div class="banknote-card">
+                <a href="b1-1.html">
+                    <img src="png_gallery_banknotes/b1-1.png" alt="Банкнота 1">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b1-2.html">
+                    <img src="png_gallery_banknotes/b1-2.png" alt="Банкнота 2">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b1-3.html">
+                    <img src="png_gallery_banknotes/b1-3.png" alt="Банкнота 3">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b4-1.html">
+                    <img src="png_gallery_banknotes/b4-1.png" alt="Банкнота 4">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b4-2.html">
+                    <img src="png_gallery_banknotes/b4-2.png" alt="Банкнота 5">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b4-3.html">
+                    <img src="png_gallery_banknotes/b4-3.png" alt="Банкнота 6">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b4-4.html">
+                    <img src="png_gallery_banknotes/b4-4.png" alt="Банкнота 7">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b4-5.html">
+                    <img src="png_gallery_banknotes/b4-5.png" alt="Банкнота 8">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b5-1.html">
+                    <img src="png_gallery_banknotes/b5-1.png" alt="Банкнота 9">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b5-2.html">
+                    <img src="png_gallery_banknotes/b5-2.png" alt="Банкнота 10">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b5-3.html">
+                    <img src="png_gallery_banknotes/b5-3.png" alt="Банкнота 11">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b5-4.html">
+                    <img src="png_gallery_banknotes/b5-4.png" alt="Банкнота 12">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b9-1.html">
+                    <img src="png_gallery_banknotes/b9-1.png" alt="Банкнота 13">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b9-2.html">
+                    <img src="png_gallery_banknotes/b9-2.png" alt="Банкнота 14">
+                </a>
+            </div>
+            <div class="banknote-card">
+                <a href="b9-3.html">
+                    <img src="png_gallery_banknotes/b9-3.png" alt="Банкнота 15">
+                </a>
+            </div>
+        </div>
+    </div>
+        <script>
+       // КНОПКА ЗВУКА
+       const soundBtn = document.getElementById('soundControl');
+
+       // ПОЛУЧАЕМ СОСТОЯНИЕ ИЗ ХРАНИЛИЩА (ЕСЛИ ЕСТЬ)
+       let isSoundOn = localStorage.getItem('isSoundOn') !== 'false';
+
+       // СОЗДАЁМ АУДИО (ОДИН РАЗ)
+       const audio = new Audio('https://precept401.github.io/sounds/atmo.mp3');
+       audio.loop = true;
+
+       // УСТАНАВЛИВАЕМ ГРОМКОСТЬ (ПО ЖЕЛАНИЮ)
+       audio.volume = 0.1;
+
+       // ФУНКЦИЯ ОБНОВЛЕНИЯ ИКОНКИ И СОСТОЯНИЯ
+       function updateSoundButton() {
+       if (isSoundOn) {
+        soundBtn.textContent = '🔊';
+        audio.play().catch(e => console.log('Автовоспроизведение заблокировано:', e));
+       } else {
+        soundBtn.textContent = '🔇';
+        audio.pause();
+       }
+    }
+
+       // ПРОВЕРЯЕМ, НУЖНО ЛИ ВОСПРОИЗВОДИТЬ ПРИ ЗАГРУЗКЕ
+       updateSoundButton();
+
+       // ОБРАБОТЧИК КЛИКА
+       soundBtn.addEventListener('click', () => {
+          isSoundOn = !isSoundOn;
+          localStorage.setItem('isSoundOn', isSoundOn);
+          updateSoundButton();
+        });
+    </script>
+
+</body>
+</html>
