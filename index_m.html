@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="vieport" content="width=device-width, initial-scale=1.0">
+<meta name="vieport" content="width=device-width, initial-scale=1.0">
     <title>Precept401 — цифровая среда</title>
     <style>
         * {
@@ -23,22 +23,23 @@
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+           justify-content: center;
             align-items: center;
             text-align: center;
             padding: 20px;
         }
 
-        /* ПЕЧАТЬ (ЦЕНТР) */
+        /* ПЕЧАТЬ (ЦЕНТР) МОБАЙЛ */
         .seal {
-            width: 340px;
-            height: 340px;
+            width: 80%;
+            max-width: 800px;
+           aspect-ratio: 1/1;
             background-color: #000000;
             border-radius: 2px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
+           margin: 30px auto 90px;
             box-shadow: 0 0 20px rgba(90, 185, 155, 0.3);
             border: 2px solid #5ab99b;
         }
@@ -63,9 +64,10 @@
         /* МЕНЮ-ПАНЕЛЬ (ТЕКСТОВЫЕ КНОПКИ) */
         .menu-panel {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+           flex-direction: column;
+           align-items: center;
             gap: 30px;
+           width: 100%;
             margin-bottom: 40px;
         }
 
@@ -74,13 +76,16 @@
             display: inline-block;
             text-decoration: none;
             color: #5ab99b;
-            font-size: 18px;
+           font-size: 45px;
             font-weight: bold;
             text-transform: uppercase;
             background-color: #0d1b1e;
             border: 1px solid #5ab99b;
             border-radius: 20px;
-            padding: 10px 20px;
+           padding: 30px 50px;
+           width: 100%;
+           max-width: 800px;
+           text-align: center:
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -98,26 +103,26 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 40px;
+           padding: 80px;
             background-color: rgba(13, 27, 30, 0.8);
         }
 
         .hidden-text .card {
-            max-width: 600px;
+           max-width: 800px;
             background-color: #0d1b1e;
-            padding: 30px;
+           padding: 50px;
             border-radius: 30px;
             border: 1px solid #5ab99b;
         }
-
+    
         /* АДАПТАЦИЯ ПОД ТЕЛЕФОНЫ */
-       max-width: 600px {
-       .lab-menu {
+        @media (max-width: 600px) {
+    .lab-menu {
         flex-direction: column;
         align-items: center;
         gap: 20px;
     }
-    
+
     .lab-button {
         padding: 12px 24px;
         font-size: 18px;
@@ -215,9 +220,9 @@
             <img src="images/seal.png" alt="Печать precept401">
         </div>
 
-    <!-- КНОПКА ЗВУКА (СПРАВА) -->
+    <!-- КНОПКА ЗВУКА И МОБИЛЬНОЙ ВЕРСИИ (СПРАВА) -->
     <div id="soundControl" class="sound-btn">🔊</div>
-    <a href="index_m.html" class="sound-btn" style="top: 80px;">📱</a>
+    <a href="index.html" class="sound-btn" style="top: 80px;">📱</a>
 
         <!-- МЕНЮ (ТЕКСТОВЫЕ КНОПКИ) -->
         <div class="menu-panel">
@@ -247,7 +252,7 @@ const soundBtn = document.getElementById('soundControl');
 let isSoundOn = localStorage.getItem('isSoundOn') !== 'false';
 
 // СОЗДАЁМ АУДИО (ОДИН РАЗ)
-const audio = new Audio('sounds/atmo.mp3');
+const audio = new Audio('/precept401/sounds/atmo.mp3');
 audio.loop = true;
 
 // УСТАНАВЛИВАЕМ ГРОМКОСТЬ (ПО ЖЕЛАНИЮ)
@@ -273,6 +278,7 @@ soundBtn.addEventListener('click', () => {
     localStorage.setItem('isSoundOn', isSoundOn);
     updateSoundButton();
         });
+
     </script>
 
 </body>
