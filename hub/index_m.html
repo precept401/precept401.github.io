@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="vieport" content="width=device-width, initial-scale=1.0">
-    <title>[LABORATORY MENU] — </title>
+   <meta name="vieport" content="width=device-width, initial-scale=1.0">
+    <title>[HUB] — Precept401</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,9 @@
             color: #5ab99b;
             font-family: 'Courier New', monospace;
             min-height: 100vh;
+           display: flex;
+           justify-content: center;
+           align-items: center;
         }
 
         .container {
@@ -31,14 +34,14 @@
         }
 
         .title h1 {
-            font-size: 48px;
+           font-size: 80px;
             color: #5ab99b;
             text-transform: uppercase;
             letter-spacing: 4px;
         }
 
         .title p {
-            font-size: 16px;
+           font-size: 28px;
             opacity: 0.8;
         }
 
@@ -55,7 +58,7 @@
         
         .dropdown-content a {
             color: #5ab99b;
-            font-size: 16px;
+           font-size: 48px;
             font-family: 'Courier New', monospace;
             font-weight: normal;
             padding: 12px 20px;
@@ -79,8 +82,8 @@
         .lab-button {
             background-color: #0d1b1e;
             color: #5ab99b;
-            padding: 18px 36px;
-            font-size: 24px;
+           padding: 18px 20px;
+           font-size: 48px;
             font-weight: bold;
             text-decoration: none;
             border: 1px solid #5ab99b;
@@ -88,6 +91,8 @@
             transition: all 0.2s ease;
             cursor: pointer;
             display: inline-block;
+           width: 400px;
+           text-align: center;
         }
 
         .lab-button:hover {
@@ -116,8 +121,8 @@
         }
 
         /* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
-        @media (max-width: 600px) {
-        .lab-menu {
+max-width: 600px {
+    .lab-menu {
         flex-direction: column;
         align-items: center;
         gap: 20px;
@@ -143,30 +148,6 @@
         font-size: 20px;
     }
 }
-
-        /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
-        .sound-btn {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background-color: #0d1b1e;
-            border: 2px solid #5ab99b;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1000;
-            transition: all 0.2s ease;
-        }
-
-        .sound-btn:hover {
-            background-color: #5ab99b;
-            color: #061113;
-        }
 
         @keyframes noise {
                0% { transform: translate(0, 0); opacity: 0.3; }
@@ -212,14 +193,14 @@
         /* КРУЖОК С ТОЧКАМИ */
         .lab-dot-nav {
             position: fixed;
-            top: 20px;
+           top: 15px;
             left: 20px;
             z-index: 100;
         }
 
         .lab-dot-button {
-            width: 50px;
-            height: 50px;
+           width: 70px;
+           height: 70px;
             background-color: #0d1b1e;
             border: 2px solid #5ab99b;
             border-radius: 50%;
@@ -246,16 +227,20 @@
         .lab-menu-items {
             position: absolute;
             top: 0;
-            left: 60px;
+           left: 100px;
             background-color: rgba(13, 27, 30, 0.95);
             border: 1px solid #5ab99b;
             border-radius: 30px;
-            padding: 8px 20px;
-            white-space: nowrap;
+           padding: 8px 40px;
+
             backdrop-filter: blur(5px);
             transition: visibility 0s linear 0.5s, opacity 0.3s linear;
             opacity: 0;
             visibility: hidden;
+           display: flex;
+           flex-direction: column;
+           gap: 12px;
+           min-width: 350px;
         }
 
         .lab-dot-menu:hover .lab-menu-items {
@@ -267,13 +252,14 @@
         .lab-menu-items a {
             color: #5ab99b;
             text-decoration: none;
-            font-size: 14px;
+           font-size: 48px;
             font-weight: bold;
             text-transform: uppercase;
             padding: 6px 12px;
             display: inline-block;
             transition: all 0.2s ease;
             border-radius: 20px;
+           white-space: nowrap;
         }
 
         .lab-menu-items a:hover {
@@ -281,6 +267,29 @@
             color: #000000;
         }
 
+        /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
+        .sound-btn {
+            position: fixed;
+           top: 15px;
+            right: 20px;
+           width: 70px;
+           height: 70px;
+            background-color: #0d1b1e;
+            border: 2px solid #5ab99b;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.2s ease;
+        }
+
+        .sound-btn:hover {
+            background-color: #5ab99b;
+            color: #061113;
+        }
         
     </style>
 </head>
@@ -289,23 +298,23 @@
 <div class="container">
     <!-- ТИТУЛЬНИК -->
     <div class="title">
-        <h1>[LABORATORY MENU]</h1>
-        <p>observations · research · artifacts</p>
+        <h1>[HUB]</h1>
+        <p>center · synthesis · dialogue</p>
     </div>
 
     <!-- КНОПКА ЗВУКА (СПРАВА) -->
     <div id="soundControl" class="sound-btn">🔊</div>
-    <a href="index.html" class="sound-btn" style="top: 80px;">📱</a>
+    <a href="index.html" class="sound-btn" style="top: 110px;">📱</a>
 
     <!-- КРУЖОК С ТОЧКАМИ И ВЫПАДАЮЩИМ МЕНЮ -->
     <div class="lab-dot-nav">
         <div class="lab-dot-menu">
             <div class="lab-dot-button">•••</div>
             <div class="lab-menu-items">
-                <a href="https://precept401.github.io">[HOME]</a>
-                <a href="https://precept401.github.io/liquid_emptiness_menu/">[LIQUID EMPTINESS]</a>
-                <a href="https://precept401.github.io/depository_menu/">[DEPOSITORY]</a>
-                <a href="https://precept401.github.io/hub/">[HUB]</a>
+                <a href="/precept401/">[HOME]</a>
+                <a href="/precept401/lab_menu/">[LAB]</a>
+                <a href="/precept401/liquid_emptiness_menu/">[LIQUID EMPTINESS]</a>
+                <a href="/precept401/depository_menu/">[DEPOSITORY]</a>
             </div>
         </div>
     </div>
@@ -314,12 +323,20 @@
     <div class="lab-menu">
         <!-- Кнопка 1 -->
         <div class="dropdown">
-            <div class="lab-button">[MONOGRAPH] ▼</div>
+            <div class="lab-button">[MAIL] ▼</div>
             <div class="dropdown-content">
-                <a href="https://precept401.github.io/lab_menu/monograph/civilization/">[CIVILIZATION]</a>
-
+                <a>precept401@bk.ru</a>
             </div>
         </div>
+
+        <!-- Кнопка 2 -->
+        <div class="dropdown">
+            <div class="lab-button">[TELEGRAM] ▼</div>
+            <div class="dropdown-content">
+                <a href="https://t.me/precept401Hub">precept401[Hub]</a>
+            </div>
+        </div>
+
     </div>
 </div>
 

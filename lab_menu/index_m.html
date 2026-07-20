@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="utf-8">
-    <meta name="vieport" content="width=device-width, initial-scale=1.0">
-    <title>[LABORATORY MENU] — </title>
+<meta name="vieport" content="width=device-width, initial-scale=1.0">
+    <title>[LABORATORY MENU] — Precept401</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,9 @@
             color: #5ab99b;
             font-family: 'Courier New', monospace;
             min-height: 100vh;
+           display: flex;
+           justify-content: center;
+           align-items: center;
         }
 
         .container {
@@ -31,14 +34,14 @@
         }
 
         .title h1 {
-            font-size: 48px;
+           font-size: 80px;
             color: #5ab99b;
             text-transform: uppercase;
             letter-spacing: 4px;
         }
 
         .title p {
-            font-size: 16px;
+           font-size: 28px;
             opacity: 0.8;
         }
 
@@ -55,7 +58,7 @@
         
         .dropdown-content a {
             color: #5ab99b;
-            font-size: 16px;
+           font-size: 48px;
             font-family: 'Courier New', monospace;
             font-weight: normal;
             padding: 12px 20px;
@@ -79,8 +82,8 @@
         .lab-button {
             background-color: #0d1b1e;
             color: #5ab99b;
-            padding: 18px 36px;
-            font-size: 24px;
+           padding: 18px 120px;
+           font-size: 48px;
             font-weight: bold;
             text-decoration: none;
             border: 1px solid #5ab99b;
@@ -116,8 +119,8 @@
         }
 
         /* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
-        @media (max-width: 600px) {
-        .lab-menu {
+max-width: 600px {
+    .lab-menu {
         flex-direction: column;
         align-items: center;
         gap: 20px;
@@ -147,17 +150,17 @@
         /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
         .sound-btn {
             position: fixed;
-            top: 20px;
+           top: 15px;
             right: 20px;
-            width: 50px;
-            height: 50px;
+           width: 70px;
+           height: 70px;
             background-color: #0d1b1e;
             border: 2px solid #5ab99b;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+           font-size: 30px;
             cursor: pointer;
             z-index: 1000;
             transition: all 0.2s ease;
@@ -212,14 +215,14 @@
         /* КРУЖОК С ТОЧКАМИ */
         .lab-dot-nav {
             position: fixed;
-            top: 20px;
+           top: 15px;
             left: 20px;
             z-index: 100;
         }
 
         .lab-dot-button {
-            width: 50px;
-            height: 50px;
+           width: 70px;
+           height: 70px;
             background-color: #0d1b1e;
             border: 2px solid #5ab99b;
             border-radius: 50%;
@@ -246,16 +249,20 @@
         .lab-menu-items {
             position: absolute;
             top: 0;
-            left: 60px;
+           left: 100px;
             background-color: rgba(13, 27, 30, 0.95);
             border: 1px solid #5ab99b;
             border-radius: 30px;
-            padding: 8px 20px;
-            white-space: nowrap;
+           padding: 8px 40px;
+           
             backdrop-filter: blur(5px);
             transition: visibility 0s linear 0.5s, opacity 0.3s linear;
             opacity: 0;
             visibility: hidden;
+           display: flex;
+           flex-direction: column;
+           gap: 12px;
+          min-width: 350px;
         }
 
         .lab-dot-menu:hover .lab-menu-items {
@@ -267,13 +274,14 @@
         .lab-menu-items a {
             color: #5ab99b;
             text-decoration: none;
-            font-size: 14px;
+           font-size: 48px;
             font-weight: bold;
             text-transform: uppercase;
             padding: 6px 12px;
             display: inline-block;
             transition: all 0.2s ease;
             border-radius: 20px;
+           white-space: nowrap;
         }
 
         .lab-menu-items a:hover {
@@ -295,7 +303,7 @@
 
     <!-- КНОПКА ЗВУКА (СПРАВА) -->
     <div id="soundControl" class="sound-btn">🔊</div>
-    <a href="index.html" class="sound-btn" style="top: 80px;">📱</a>
+    <a href="index.html" class="sound-btn" style="top: 110px;">📱</a>
 
     <!-- КРУЖОК С ТОЧКАМИ И ВЫПАДАЮЩИМ МЕНЮ -->
     <div class="lab-dot-nav">
