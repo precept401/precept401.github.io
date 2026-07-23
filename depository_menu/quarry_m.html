@@ -16,6 +16,9 @@
             color: #5ab99b;
             font-family: 'Courier New', monospace;
             min-height: 100vh;
+           display: flex;
+           justify-content: center;
+           align-items: center;
         }
 
         .container {
@@ -30,30 +33,20 @@
         /* ЛЕВАЯ ЧАСТЬ — БАНКНОТА */
         .banknote-area {
             flex: 1;
-            max-width: 360px;
+            max-width: 800px;
             text-align: center;
             cursor: pointer;
         }
 
         .banknote-img {
             width: 100%;
-            height: auto;
-            border-radius: 20px;
+            height: 100%;
+            border-radius: 5px;
             box-shadow: 0 0 20px rgba(90, 185, 155, 0.2);
         }
 
-        /* ПРАВАЯ ЧАСТЬ — ОПИСАНИЕ + КНОПКА */
-        .description-area {
-            flex: 1;
-            max-width: 400px;
-            text-align: center;
-        }
+        /*  КНОПКА */
 
-        .description-img {
-            width: 100%;
-            height: auto;
-            margin-bottom: 30px;
-        }
 
         .getgems-btn {
             display: inline-block;
@@ -64,8 +57,9 @@
             padding: 12px 24px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 48px;
             transition: all 0.2s ease;
+           margn-top: 100px;
         }
 
         .getgems-btn:hover {
@@ -76,14 +70,14 @@
         /* МЕНЮ (КРУЖОК С ТОЧКАМИ) */
         .dot-nav {
             position: fixed;
-            top: 20px;
+           top: 15px;
             left: 20px;
             z-index: 100;
         }
 
         .dot-button {
-            width: 50px;
-            height: 50px;
+           width: 70px;
+           height: 70px;
             background-color: #0d1b1e;
             border: 2px solid #5ab99b;
             border-radius: 50%;
@@ -110,16 +104,20 @@
         .menu-items {
             position: absolute;
             top: 0;
-            left: 60px;
+           left: 100px;
             background-color: rgba(13, 27, 30, 0.95);
             border: 1px solid #5ab99b;
             border-radius: 30px;
             padding: 8px 20px;
-            white-space: nowrap;
+
             backdrop-filter: blur(5px);
             visibility: hidden;
             opacity: 0;
             transition: visibility 0s linear 0.5s, opacity 0.3s linear;
+           display: flex;
+           flex-direction: column;
+           gap: 12px;
+           min-width: 350px;
         }
 
         .dot-menu:hover .menu-items {
@@ -131,13 +129,14 @@
         .menu-items a {
             color: #5ab99b;
             text-decoration: none;
-            font-size: 14px;
+           font-size: 48px;
             font-weight: bold;
             text-transform: uppercase;
             padding: 6px 12px;
             display: inline-block;
             transition: all 0.2s ease;
             border-radius: 20px;
+           white-space: nowrap;
         }
 
         .menu-items a:hover {
@@ -146,8 +145,8 @@
         }
 
         /* АДАПТАЦИЯ ПОД ТЕЛЕФОН */
-        @media (max-width: 600px) {
-        .lab-menu {
+max-width: 600px {
+    .lab-menu {
         flex-direction: column;
         align-items: center;
         gap: 20px;
@@ -177,17 +176,17 @@
         /* КНОПКА ЗВУКА (ВЕРХНИЙ ПРАВЫЙ УГОЛ) */
         .sound-btn {
             position: fixed;
-            top: 20px;
+           top: 15px;
             right: 20px;
-            width: 50px;
-            height: 50px;
+           width: 70px;
+           height: 70px;
             background-color: #0d1b1e;
             border: 2px solid #5ab99b;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+           font-size: 30px;
             cursor: pointer;
             z-index: 1000;
             transition: all 0.2s ease;
@@ -268,26 +267,23 @@
 
     <!-- КНОПКА ЗВУКА (СПРАВА) -->
     <div id="soundControl" class="sound-btn">🔊</div>
-    <a href="quarry_m.html" class="sound-btn" style="top: 80px;">📱</a>
+    <a href="quarry.html" class="sound-btn" style="top: 110px;">📱</a>
 
     <div class="container">
         <!-- ЛЕВАЯ ЧАСТЬ: БАНКНОТА (PNG) -->
         <div class="banknote-area">
-            <img id="banknote-img" class="banknote-img" src="png_artifacts/quarry1f0.png" alt="quarry">
-        </div>
+            <img id="banknote-img" class="banknote-img" src="png_artifacts/quarry3info0.png" alt="quarry">
 
-        <!-- ПРАВАЯ ЧАСТЬ: ОПИСАНИЕ (PNG) + КНОПКА -->
-        <div class="description-area">
-            <img class="description-img" src="png_artifacts/quarry3info0.png" alt="Описание банкноты 1">
+        <div style="text-align: center; margin-top: 40px;">
             <a href="https://getgems.io/collection/EQBmCC6haruqIABpK0yygMzF2t4A_8iJc5Dgop44n3wJ-3b5/EQBJwfgNH0XclsJcCU_852IuTX4I0KmoSHHLqnk2wlFCRSzj" class="getgems-btn" target="_blank">[GetGems]</a>
-        </div>
     </div>
-
+</div>
     <script>
 
         // ЦИКЛИЧЕСКОЕ ПЕРЕКЛЮЧЕНИЕ ИЗОБРАЖЕНИЙ БАНКНОТЫ
         const img = document.getElementById('banknote-img');
         const images = [
+            'png_artifacts/quarry3info0.png', //ttx
             'png_artifacts/quarry1f0.png',   // лицевая сторона
             'png_artifacts/quarry1b0.png',    // оборотная сторона
             'png_artifacts/quarry_A1.png'          // гифка
@@ -335,4 +331,3 @@
     </script>
 
 </body>
-</html>
